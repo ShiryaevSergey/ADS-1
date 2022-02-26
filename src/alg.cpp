@@ -4,45 +4,40 @@
 
 
 bool checkPrime(uint64_t value) {
-for (int i = 2; i < value; ++i) {
-if (value % i == 0) {
+for (int i = 2; i < value; i++) {
+if (value % i == 0)
 return false;
-}
 }
 return true;
 }
 
 uint64_t nPrime(uint64_t n) {
-uint64_t k = 0;
 uint64_t a = 0;
-for (int i = 0; i < n; ++i) {
-if (checkPrime(i)) k++;
-if (k == n) {
-a = i;
-break;
+uint64_t i = 2;
+while (a < n) {
+if (checkPrime(i)) {
+a++;
 }
+i++;
 }
-return a;
+return i - 1;
 }
 
 uint64_t nextPrime(uint64_t value) {
-uint64_t f = 0;
-uint64_t a = 0;
-for (int i = value + 1; f == 0; ++i) {
-if (checkPrime(i)) {
-a = i;
+while (true) {
+value++;
+if (checkPrime(value)) {
 break;
 }
 }
-return a;
+return value;
 }
 
 uint64_t sumPrime(uint64_t hbound) {
 uint64_t sum = 0;
-for (int i = 2; i < hbound; ++i) {
-if (checkPrime(i)) {
+for (int i = 2; i < hbound; i++) {
+if (checkPrime(i) == 1)
 sum += i;
-}
 }
 return sum;
 }
